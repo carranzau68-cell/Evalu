@@ -20,8 +20,12 @@
       <button type="submit">Registrarse</button>
     </form>
 
-    <div v-if="mensaje" class="mensaje">
-      {{ mensaje }}
+    <!-- Aquí mostramos lo registrado -->
+    <div v-if="registrado" class="resultado">
+      <h3>✅ Registro exitoso</h3>
+      <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+      <p><strong>Email:</strong> {{ usuario.email }}</p>
+      <p><strong>Contraseña:</strong> {{ usuario.password }}</p>
     </div>
   </div>
 </template>
@@ -29,18 +33,20 @@
 <script setup>
 import { reactive, ref } from 'vue'
 
+// Datos del usuario
 const usuario = reactive({
   nombre: '',
   email: '',
   password: ''
 })
 
-const mensaje = ref('')
+// Estado: si ya se registró o no
+const registrado = ref(false)
 
+// Función para el submit
 const registrar = () => {
   if (usuario.nombre && usuario.email && usuario.password) {
-    mensaje.value = `Usuario ${usuario.nombre} registrado correctamente 🎉`
-    // Aquí podrías hacer un POST a una API
+    registrado.value = true
   }
 }
 </script>
@@ -81,9 +87,12 @@ button:hover {
   background-color: #36996d;
 }
 
-.mensaje {
-  margin-top: 1rem;
-  color: green;
-  font-weight: bold;
+.resultado {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #eafbea;
+  border: 1px solid #42b983;
+  text-align: left;
 }
 </style>
