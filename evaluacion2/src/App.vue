@@ -1,10 +1,20 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div id="app">
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+      <router-link to="/register">Registro</router-link>
+
+    </nav>
+    <router-view />
+    <h2>Registro de productos</h2>
+    <FormProducto />
+  </div>
 </template>
+
+<script setup>
+import FormProducto from './components/FormProducto.vue'
+</script>
 
 <style>
 #app {
